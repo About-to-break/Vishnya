@@ -1,0 +1,37 @@
+.artwork-grid-container {
+  width: 900px;
+  margin: 0 auto;
+  display: inline-flex;
+}
+
+.column {
+  width: 300px;
+}
+
+.art-container {
+  width: 300px;
+}
+
+<div class="artwork-grid-container">
+    <div class="column">
+        {% for art1 in artworks %}
+        <div class="art-container">
+           <img href="{{art1.image.url }}">
+        </div>
+        {% endfor %}
+    </div>
+     <div class="column">
+        {% for art2 in artworks %}
+         <div class="art-container">
+           <img href="{{art2.image.url }}">
+        </div>
+        {% endfor %}
+    </div>
+     <div class="column">
+        {% for art3 in artworks %}
+         <div class="art-container">
+           <img href="{{art3.image.url }}">
+        </div>
+        {% endfor %}
+    </div>
+</div>

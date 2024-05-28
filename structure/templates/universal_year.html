@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css%}
+        <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+        {% endblock %}
+
+{% block content %}
+    <div class="filter-container">
+        {% for artwork in result %}
+        <div class="filter-card">
+            <img src="{{ artwork.image.url }}" class="filter-img" alt="">
+            <div class="fading-text-f">
+                <a class="helvetic-pale" href="#">{{artwork.name}}</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

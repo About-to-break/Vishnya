@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css%}
+        <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+        {% endblock %}
+
+{% block content %}
+<div class="secondary">
+    <div class="artwork-grid-container">
+        <div class="column">
+            {% for art1 in artworks1 %}
+            <div class="art-container">
+               <img src="{{art1.image.url }}">
+                <div class="fading-text-i">
+            <a class="helvetic-pale"href="{% url 'artpiece' art_name=art1.name %}">{{art1.name}}</a>
+        </div>
+            </div>
+            {% endfor %}
+        </div>
+         <div class="column">
+            {% for art2 in artworks2 %}
+             <div class="art-container">
+               <img src="{{art2.image.url }}">
+                  <div class="fading-text-i">
+            <a class="helvetic-pale"href="{% url 'artpiece' art_name=art2.name %}">{{art2.name}}</a>
+        </div>
+            </div>
+            {% endfor %}
+        </div>
+         <div class="column">
+            {% for art3 in artworks3 %}
+             <div class="art-container">
+               <img src="{{art3.image.url }}">
+                  <div class="fading-text-i">
+            <a class="helvetic-pale"href="{% url 'artpiece' art_name=art3.name %}">{{art3.name}}</a>
+        </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico">
+        <title>{{ title }}</title>
+        <meta charset="utf-8">
+        <meta name ="viewport" content="width=device-width, initial-scale=1">
+
+        {% block css%}
+
+        {% endblock %}
+
+    </head>
+    <body>
+        <nav class="sticky">
+        <header id="header" class="header">
+            <div class="container">
+                <div class="nav-bar">
+                    
+                    <a href="{% url 'index' %}">
+                        <img src="{% static '/source/images/main_logo.svg' %}" class= "logo" height="50"alt="Main Logo" loading="lazy"/>
+                    </a>
+                    <ul class = "menu">
+                        <li>
+                            <a class="neon-green" href="{% url 'index' %}">FEATURED</a>
+                            <span class="neon-skip">|</span>
+                        </li>
+                        
+                        <li>
+                            <a class="neon-green" href="{% url 'collections' %}">COLLECTIONS</a>
+                            <span class="neon-skip">|</span>
+                        </li>
+                        
+                        <li>
+                            <a class="neon-green" href="{% url 'bio' %}">BIO</a>
+                            <span class="neon-skip">|</span>
+                        </li>
+                        
+                        <li>
+                            <a class="neon-green" href="{% url 'bio' %}">SOCIAL</a>
+                        </li>
+                    </ul>
+                <a class = "switcher" href="{% url 'bio' %}">
+                    <img
+                    src="{% static 'source/images/united-kingdom-uk-svgrepo-com.svg' %}"
+                    height="50"
+                    alt="Main Logo"
+                    loading="lazy"
+                  />
+                </a>
+            
+            </div>
+
+            </div>
+        </div>
+        <hr width="100%" color="#00F6BB" size="3px">
+    </header>
+</nav>
+
+
+        <selection>
+            {% block content %}
+        {% endblock %}
+        </selection>
+
+    <footer id = "footer" class = "footer">
+        <hr width="100%" color="#00F6BB" size="3px">
+        
+        <div class="container">
+            <div class="jumper">
+                <ul class="years">
+                    <li>
+                        <a href="{% url 'universal_year' year_name='2023' %}">2023</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'universal_year' year_name='2022' %}">2022</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'universal_year' year_name='2021' %}">2021</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'universal_year' year_name='2020' %}">2020</a>
+                    </li>
+                </ul>
+                <ul class="collections">
+                    <li>
+                        <a href="{% url 'universal_collect' collection_name='CRXNGE_BAR' %}">CRXNGE_BAR</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'universal_collect' collection_name='ACADEMIC' %}">ACADEMIC</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'universal_collect' collection_name='PORTFOLIO' %}">PORTFOLIO</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'universal_collect' collection_name='FREEDOM' %}">FREEDOM</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <hr width="100%" color="#00F6BB" size="3px">
+        <div class="credits">
+            <span>Soya Mariya</span>
+            <br>
+            <span>2023</span>
+            <br>
+
+        </div>
+    </footer>
+
+
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({top:0, behavior: 'smooth'})
+        }
+
+        window.onscroll = function () {
+            var button = document.getElementById('back-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        };
+    </script>
+
+
+    </body>
+</html>
