@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'structure/base.html' %}
 {% load static %}
 
 {% block css%}
@@ -11,7 +11,7 @@
         <div class="filter-card">
             <img src="{{ artwork.image.url }}" class="filter-img" alt="">
             <div class="fading-text-f">
-                <a class="helvetic-pale" href="{% url 'artpiece' art_name=artwork.name %}">{{artwork.name}}</a>
+                <a class="helvetic-pale" href="{% url 'structure:artpiece' art_name=artwork.name %}">{{artwork.name}}</a>
             </div>
         </div>
     {% endfor %}

@@ -1,0 +1,56 @@
+{% extends 'orders/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="main-content">
+        <div class="products">
+            {% if object_list %}
+                {% for order in object_list %}
+                    <div class="order-card card mb-4">
+                        <div class="card-header bg-dark text-light">
+                            <h4 class="mb-0 helvetic-pale">Заказ №{{ order.id }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-primary">Статус: {{ order.get_status_display }}</h5>
+                            <div class="product-list">
+                                {% if order.is_active %}
+                                    <div class="product d-flex justify-content-between align-items-center">
+                                        <a href="{% url 'order:order_remove' order.id %}" class="btn btn-danger">
+                                            Отменить подписку
+                                        </a>
+                                        <a href="{% url 'order:receipt' order.id %}" class="btn btn-success">
+                                            Получить чек
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    {% for basket in order.basket_history.purchased_items %}
+                                        <div class="product border-bottom py-2">
+                                            <strong class="neon-green">{{ basket.product_name }}</strong>
+                                            <span class="helvetic-pale">Кол-во: {{ basket.quantity }}</span>
+                                            <span class="helvetic-pale">Стоимость: {{ basket.sum }} р.</span>
+                                        </div>
+                                    {% endfor %}
+                                    <div class="order-total mt-3">
+                                        <h4 class="text-success">Цена заказа: {{ order.basket_history.total_sum }} р.</h4>
+                                    </div>
+                                    <div class="mt-3">
+                                        <a href="{% url 'order:receipt' order.id %}" class="btn btn-primary">
+                                            Получить чек
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center">
+                    <h1 class="neon-green">Заказов нет</h1>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

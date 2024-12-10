@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'structure/base.html' %}
 {% load static %}
 
 {% block css%}
@@ -8,6 +8,9 @@
 {% block content %}
 <div class="single-art-page">
   <img class="single-image"src="{{result.image.url}}">
+
+    <a href="{% url 'structure:basket_add' result.id %}" class="helvetic-pale">ДОБАВИТЬ В КОРЗИНУ, {{result.price}} РУБ.</a>
 </div>
+
 
 {% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Чек</title>
+    <style>
+    body {
+        font-family: sans-serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<h1>Чек</h1>
+
+<p><strong>Номер чека:</strong> {{ receipt_data.id }}</p>
+<p><strong>Тип:</strong> {{ receipt_data.type }}</p>
+<p><strong>ID платежа:</strong> {{ receipt_data.payment_id }}</p>
+<p><strong>Статус:</strong> {{ receipt_data.status }}</p>
+<p><strong>Номер фискального документа:</strong> {{ receipt_data.fiscal_document_number }}</p>
+<p><strong>Номер фискального накопителя:</strong> {{ receipt_data.fiscal_storage_number }}</p>
+<p><strong>Фискальный признак:</strong> {{ receipt_data.fiscal_attribute }}</p>
+<p><strong>Дата и время регистрации:</strong> {{ receipt_data.registered_at }}</p>
+<p><strong>ID чека в облачной кассе:</strong> {{ receipt_data.fiscal_provider_id }}</p>
+
+{% if order.is_active %}
+    <p>Товар - подписка. Стоимость - 150 руб./мес. Первый платёж - 50 руб.</p>
+{% else %}
+    <table>
+    <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Цена</th>
+            <th>Количество</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in receipt_data.items %}
+        <tr>
+            <td>{{ item.description }}</td>
+            <td>{{ item.amount.value }} {{ item.amount.currency }}</td>
+            <td>{{ item.quantity }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <p><strong>Итого:</strong> {{ order_history.total_sum|floatformat:2 }} {{ receipt_data.items.0.amount.currency }}</p>
+{% endif %}
+<a href="{% url 'products:index' %}">возврат на главный экран</a>
+</body>
+</html>

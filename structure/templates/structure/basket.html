@@ -1,0 +1,39 @@
+{% extends 'structure/base.html' %}
+{% load static %}
+
+{% block css%}
+        <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+        {% endblock %}
+
+{% block content %}
+<main class="container">
+        <section>
+            <ul class="collections-container">
+                {% if baskets %}
+                {% for basket in baskets %}
+                <!-- Пример товара -->
+                <li class="collection-card">
+                    <img src="{{bascet.product.image}}" alt="Товар 1" class="collection-img">
+                    <p class="barcode-pale">{{ basket.product.name }}</p>
+                    <p class="helvetic-pale">{{ basket.sum }}</p>
+                </li>
+            </ul>
+        </section>
+                {% endfor %}
+            </div>
+    <div>Итого товаров {{ baskets.total_quantity }}шт. на сумму {{ baskets.total_sum }}р.</div>
+        <div><a id="normal" href="{% url 'order:order_view' %}" class="button">Перейти к оплате</a></div>
+    {% else %}
+        <h1> Корзина пуста</h1>
+
+        <section>
+            <form action="" method="post" class="filter-container">
+                {% csrf_token %}
+                <h2 class="neon-green">Пожелания к заказу</h2>
+                <textarea name="wishlist" rows="5" class="helvetic-pale" placeholder="Введите ваши пожелания..." style="width: 100%;"></textarea>
+                <button type="submit" class="button" style="margin-top: 20px;">Отправить</button>
+            </form>
+        </section>
+    </main>
+{% endif %}
+{% endblock %}

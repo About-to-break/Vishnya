@@ -18,30 +18,38 @@
             <div class="container">
                 <div class="nav-bar">
                     
-                    <a href="{% url 'index' %}">
+                    <a href="{% url 'structure:index' %}">
                         <img src="{% static '/source/images/main_logo.svg' %}" class= "logo" height="50"alt="Main Logo" loading="lazy"/>
                     </a>
                     <ul class = "menu">
                         <li>
-                            <a class="neon-green" href="{% url 'index' %}">FEATURED</a>
+                            <a class="neon-green" href="{% url 'structure:index' %}">FEATURED</a>
+                            <span class="neon-skip">|</span>
+                        </li>
+
+                        <li>
+                            <a class="neon-green" href="{% url 'structure:collections' %}">COLLECTIONS</a>
                             <span class="neon-skip">|</span>
                         </li>
                         
                         <li>
-                            <a class="neon-green" href="{% url 'collections' %}">COLLECTIONS</a>
+                            <a class="neon-green" href="{% url 'structure:basket_view' %}">BASCET</a>
                             <span class="neon-skip">|</span>
                         </li>
-                        
+
+                        {% if user.is_authenticated %}
                         <li>
-                            <a class="neon-green" href="{% url 'bio' %}">BIO</a>
+                            <a class="neon-green" href="{% url 'users:profile' user.id %}">{{ user.username }}</a>
                             <span class="neon-skip">|</span>
                         </li>
-                        
+                        {% else %}
                         <li>
-                            <a class="neon-green" href="{% url 'bio' %}">SOCIAL</a>
+                            <a class="neon-green" href="{% url 'users:login' %}">LOG_IN</a>
+                            <span class="neon-skip">|</span>
                         </li>
+                        {% endif %}
                     </ul>
-                <a class = "switcher" href="{% url 'bio' %}">
+                <a class = "switcher" href="{% url 'structure:bio' %}">
                     <img
                     src="{% static 'source/images/united-kingdom-uk-svgrepo-com.svg' %}"
                     height="50"
@@ -71,30 +79,30 @@
             <div class="jumper">
                 <ul class="years">
                     <li>
-                        <a href="{% url 'universal_year' year_name='2023' %}">2023</a>
+                        <a href="{% url 'structure:universal_year' year_name='2023' %}">2023</a>
                     </li>
                     <li>
-                        <a href="{% url 'universal_year' year_name='2022' %}">2022</a>
+                        <a href="{% url 'structure:universal_year' year_name='2022' %}">2022</a>
                     </li>
                     <li>
-                        <a href="{% url 'universal_year' year_name='2021' %}">2021</a>
+                        <a href="{% url 'structure:universal_year' year_name='2021' %}">2021</a>
                     </li>
                     <li>
-                        <a href="{% url 'universal_year' year_name='2020' %}">2020</a>
+                        <a href="{% url 'structure:universal_year' year_name='2020' %}">2020</a>
                     </li>
                 </ul>
                 <ul class="collections">
                     <li>
-                        <a href="{% url 'universal_collect' collection_name='CRXNGE_BAR' %}">CRXNGE_BAR</a>
+                        <a href="{% url 'structure:universal_collect' collection_name='CRXNGE_BAR' %}">CRXNGE_BAR</a>
                     </li>
                     <li>
-                        <a href="{% url 'universal_collect' collection_name='ACADEMIC' %}">ACADEMIC</a>
+                        <a href="{% url 'structure:universal_collect' collection_name='ACADEMIC' %}">ACADEMIC</a>
                     </li>
                     <li>
-                        <a href="{% url 'universal_collect' collection_name='PORTFOLIO' %}">PORTFOLIO</a>
+                        <a href="{% url 'structure:universal_collect' collection_name='PORTFOLIO' %}">PORTFOLIO</a>
                     </li>
                     <li>
-                        <a href="{% url 'universal_collect' collection_name='FREEDOM' %}">FREEDOM</a>
+                        <a href="{% url 'structure:universal_collect' collection_name='FREEDOM' %}">FREEDOM</a>
                     </li>
                 </ul>
 

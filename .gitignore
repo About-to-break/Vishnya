@@ -1,0 +1,33 @@
+node_modules
+design
+
+# Игнорировать директорию виртуального окружения
+venv/
+Vishnya/.env
+.python-version
+
+# Игнорировать каталоги IDE и редакторов
+.idea/
+.vscode/
+*.swp
+*.swo
+
+**/.idea/
+
+# Игнорировать каталоги, создаваемые Python
+**/__pycache__
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Игнорировать артефакты сборки
+build/
+*.egg-info/
+
+*.log
+*.db
+
+.idea
+
+Vishnya/db.sqlite3

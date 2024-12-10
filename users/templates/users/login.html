@@ -1,0 +1,87 @@
+{% extends "users/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <style>
+        /* Стили для центрирования формы */
+        .container-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: black; /* Цвет фона формы */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Стили для элементов формы */
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid black;
+            margin-top: 5px;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50; /* Зеленый фон */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049; /* Темно-зеленый при наведении */
+        }
+
+        /* Стили для текста и ссылок */
+        .helvetic-pale {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .helvetic-pale a {
+            color: #4CAF50; /* Зеленый цвет для ссылки */
+            text-decoration: none;
+        }
+
+        .helvetic-pale a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+    <div class="container-form">
+        <h1 class="neon-green">LOG IN</h1>
+        <form action="{% url 'users:login' %}" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+        <p class="helvetic-pale">Нет аккаунта? <a class="underline" href="{% url 'users:registration' %}">Зарегистрироваться</a></p>
+    </div>
+{% endblock %}
