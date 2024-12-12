@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from structure import models
+from structure.forms import BasketForm
 from structure.models import Basket, Artwork
 from users.models import User
 
@@ -62,8 +63,10 @@ def basket_add(request, product_id):
 
 def basket_view(request):
     user = User.objects.get(username=request.user)
+    form = BasketForm
     context = {
-        'baskets': Basket.objects.filter(user=user)
+        'baskets': Basket.objects.filter(user=user),
+        'form': form
     }
     return render(request, 'structure/basket.html', context)
 

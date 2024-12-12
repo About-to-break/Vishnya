@@ -1,4 +1,4 @@
-{% extends 'structure/base.html' %}
+  {% extends 'structure/base.html' %}
 {% load static %}
 
 {% block css%}
@@ -22,18 +22,18 @@
                 {% endfor %}
             </div>
     <div>Итого товаров {{ baskets.total_quantity }}шт. на сумму {{ baskets.total_sum }}р.</div>
-        <div><a id="normal" href="{% url 'order:order_view' %}" class="button">Перейти к оплате</a></div>
-    {% else %}
-        <h1> Корзина пуста</h1>
 
-        <section>
-            <form action="" method="post" class="filter-container">
-                {% csrf_token %}
-                <h2 class="neon-green">Пожелания к заказу</h2>
-                <textarea name="wishlist" rows="5" class="helvetic-pale" placeholder="Введите ваши пожелания..." style="width: 100%;"></textarea>
-                <button type="submit" class="button" style="margin-top: 20px;">Отправить</button>
-            </form>
-        </section>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            {{ form.comment }}
+        </div>
+
+        <div><a id="neon-green" href="{% url 'order:order_view' %}" class="button">PAY</a></div>
+    {% else %}
+        <h1 class="neon-green"> BASKET EMPTY</h1>
+    {% endif %}
+
     </main>
-{% endif %}
 {% endblock %}

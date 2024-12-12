@@ -33,13 +33,21 @@
                         </li>
 
                         <li>
-                            <a class="neon-green" href="{% url 'structure:bio' %}">BIO</a>
+                            <a class="neon-green" href="{% url 'structure:basket_view' %}">BASCET</a>
                             <span class="neon-skip">|</span>
                         </li>
 
+                        {% if user.is_authenticated %}
                         <li>
-                            <a class="neon-green" href="{% url 'structure:bio' %}">SOCIAL</a>
+                            <a class="neon-green" href="{% url 'users:profile' user.id %}">{{ user.username }}</a>
+                            <span class="neon-skip">|</span>
                         </li>
+                        {% else %}
+                        <li>
+                            <a class="neon-green" href="{% url 'users:login' %}">LOG_IN</a>
+                            <span class="neon-skip">|</span>
+                        </li>
+                        {% endif %}
                     </ul>
                 <a class = "switcher" href="{% url 'structure:bio' %}">
                     <img

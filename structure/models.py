@@ -48,6 +48,7 @@ class Basket(models.Model):
     product = models.ForeignKey(to=Artwork, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
     objects = BasketQuerySet.as_manager()
+    comment = models.TextField(default="")
 
     def __str__(self):
         return f'{self.user} basket'

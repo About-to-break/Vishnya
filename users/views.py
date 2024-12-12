@@ -29,7 +29,8 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
 def logout_view(request):
     logout(request)
-    return render(request, 'structure/index.html')
+    form = UserLoginForm
+    return render(request, 'users/login.html', {'form': form})
 
 
 class UserProfileView(UpdateView):

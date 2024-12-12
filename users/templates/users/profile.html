@@ -1,5 +1,7 @@
 {% extends "users/base.html" %}
 
+{% load static %}
+
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
     <style>
@@ -64,7 +66,7 @@
 
     </style>
 <div class="container-form">
-    <h1 class="neon-green">Профиль пользователя</h1>
+    <h1 class="neon-green">USER PROFILE</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}
@@ -93,8 +95,12 @@
             {{ form.user_address }}
             {{ form.user_address.errors }}
         </div>
-        <button type="submit" class="btn btn-primary">Обновить профиль</button>
+        <button type="submit" class="btn btn-primary">UPDATE PROFILE</button>
     </form>
+    <hr width="100%" color="#00F6BB" size="2px">
+    <div>
+        <a href="{% url 'users:logout' %}" class="neon-green">LOGOUT</a>
+    </div>
     <hr width="100%" color="#00F6BB" size="2px">
     <div>
         <a href="{% url 'order:list_order' %}" class="neon-green">ORDER LIST</a>
