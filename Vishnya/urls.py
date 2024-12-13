@@ -18,11 +18,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from orders.views import my_webhook_handler
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("structure.urls", namespace='structure')),
     path('users/', include("users.urls", namespace='users')),
     path('orders/', include("orders.urls", namespace='orders')),
+    path('webhook/yookassa/', my_webhook_handler, name='webhook'),
 ]
 
 if settings.DEBUG:

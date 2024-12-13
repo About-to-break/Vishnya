@@ -147,16 +147,10 @@ def my_webhook_handler(request):
             if payment_info:
                 payment_status = payment_info.status
                 if payment_status == "succeeded":
-                    if payment_info.payment_method.saved:
-                        order_id = some_data['orderId']
-                        order = Order.objects.get(id=order_id)
-                        order.add_payment_id(payment_info.payment_method.id, payment_info.id)
-                        print('autoklass')
-                    else:
-                        order_id = some_data['orderId']
-                        order = Order.objects.get(id=order_id)
-                        order.update_after_payment(payment_info.id)
-                        print('emae_klass')
+                    order_id = some_data['orderId']
+                    order = Order.objects.get(id=order_id)
+                    order.update_after_payment(payment_info.id)
+                    print('emae_klass')
                 else:
                     print('emae ne klass')
 

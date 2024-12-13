@@ -30,6 +30,16 @@
     letter-spacing: 0.15em;
   }
 
+.neon-green-left {
+    color: #00F6BB;
+    font-family: "ashby" ;
+    text-decoration: none;
+    font-size: 175%;
+    margin-left: 10px;
+    letter-spacing: 0.15em;
+    text-align: right;
+  }
+
 
 .helvetic-pale {
     color: #d9d9d9;

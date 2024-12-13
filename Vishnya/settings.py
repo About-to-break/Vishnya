@@ -25,8 +25,11 @@ SECRET_KEY = 'iumrlqv^6(@g#n3jbcml!a^-7e-atj&zdws8j)%&h+uass7y4l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ad5f-109-252-190-157.ngrok-free.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://ad5f-109-252-190-157.ngrok-free.app']
+
+DOMAIN_NAME = 'http://127.0.0.1:8000'
 
 # Application definition
 
@@ -142,5 +145,5 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-YOOKASSA_SECRET_KEY = os.environ.get('YOOKASSA_SECRET_KEY')
-YOOKASSA_SHOP_ID = os.environ.get('YOOKASSA_ACCOUNT_ID')
+YOOKASSA_SECRET_KEY = 'test_HrOiPv0dOnscsu8js0TdFpvEbBx0XiVo6Of9F_QFAnQ'
+YOOKASSA_SHOP_ID = '424186'

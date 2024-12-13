@@ -31,21 +31,26 @@
                             <a class="neon-green" href="{% url 'structure:collections' %}">COLLECTIONS</a>
                             <span class="neon-skip">|</span>
                         </li>
-                        
-                        <li>
-                            <a class="neon-green" href="{% url 'structure:basket_view' %}">BASCET</a>
-                            <span class="neon-skip">|</span>
-                        </li>
 
                         {% if user.is_authenticated %}
                         <li>
-                            <a class="neon-green" href="{% url 'users:profile' user.id %}">{{ user.username }}</a>
+                            <a class="neon-green" href="{% url 'structure:basket_view' %}">BASKET</a>
                             <span class="neon-skip">|</span>
                         </li>
                         {% else %}
                         <li>
-                            <a class="neon-green" href="{% url 'users:login' %}">LOG_IN</a>
+                            <a class="neon-green" href="{% url 'users:login' %}">BASKET</a>
                             <span class="neon-skip">|</span>
+                        </li>
+                        {% endif %}
+
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a class="neon-green-left" href="{% url 'users:profile' user.id %}">{{ user.username }}</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a class="neon-green-left" href="{% url 'users:login' %}">LOG_IN</a>
                         </li>
                         {% endif %}
                     </ul>
@@ -112,7 +117,7 @@
         <div class="credits">
             <span>Soya Mariya</span>
             <br>
-            <span>2023</span>
+            <span>2024</span>
             <br>
 
         </div>
