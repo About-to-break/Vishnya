@@ -1,39 +1,132 @@
-  {% extends 'structure/base.html' %}
+{% extends 'structure/base.html' %}
 {% load static %}
 
-{% block css%}
-        <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
-        {% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <style>
+        /* Стили для контейнера товара */
+        .collection-card {
+            border-radius: 12px;
+            background-color: #2c2c2c; /* Темно-серый фон */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-width: 350px; /* Увеличен контейнер */
+            font-family: 'neon-green', sans-serif; /* Использован стиль шрифта neon-green */
+        }
+
+        .collection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #34495e;
+            border-radius: 12px 12px 0 0;
+            padding: 15px;
+        }
+
+        .card-body {
+            color: #fff;
+            padding: 20px;
+        }
+
+        .card-header h4 {
+            font-family: 'neon-green', sans-serif;
+            color: #00F6BB;
+        }
+
+        .helvetic-pale {
+            font-family: 'Helvetica', sans-serif;
+            color: #bdc3c7;
+        }
+
+        /* Стили для общей суммы корзины */
+        .total-summary {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 30px;
+            text-align: center;
+            font-family: 'Helvetica', sans-serif;
+        }
+
+        .total-summary strong {
+            color: #00F6BB;
+        }
+
+        /* Стиль для кнопки оплаты */
+        .btn-payment {
+            display: inline-block;
+            padding: 14px 40px;
+            background-color: #28a745; /* Зеленый для кнопки оплаты */
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            font-family: 'Helvetica', sans-serif;
+        }
+
+        .btn-payment:hover {
+            background-color: #218838;
+            transform: translateY(-2px); /* Эффект поднятия */
+        }
+
+        .btn-payment:active {
+            background-color: #1e7e34;
+            transform: translateY(0);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .total-summary {
+                font-size: 18px;
+            }
+
+            .btn-payment {
+                width: 100%;
+                padding: 16px;
+            }
+        }
+    </style>
+{% endblock %}
 
 {% block content %}
 <main class="container">
-        <section>
-            <ul class="collections-container">
-                {% if baskets %}
+    <section>
+        <ul class="collections-container">
+            {% if baskets %}
                 {% for basket in baskets %}
-                <!-- Пример товара -->
-                <li class="collection-card">
-                    <img src="{{bascet.product.image}}" alt="Товар 1" class="collection-img">
-                    <p class="barcode-pale">{{ basket.product.name }}</p>
-                    <p class="helvetic-pale">{{ basket.sum }}</p>
-                </li>
+                    <li class="collection-card card mb-4">
+                        <div class="card-header text-light">
+                            <h4 class="neon-green">{{ basket.product.name }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="helvetic-pale">Цена: {{ basket.sum }} р.</p>
+                        </div>
+                    </li>
+                {% endfor %}
             </ul>
         </section>
-                {% endfor %}
-            </div>
-    <div>Итого товаров {{ baskets.total_quantity }}шт. на сумму {{ baskets.total_sum }}р.</div>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        <div class="form-group">
-            {{ form.comment }}
+        <div class="total-summary">
+            <strong>Total items:</strong> {{ baskets.total_quantity }} pcs <br>
+            <strong>Total sum:</strong> {{ baskets.total_sum }} ₽
+            <hr width="50%" color="#00F6BB" size="2px">
+
+            <!-- Стилизованная кнопка оплаты, по центру -->
+            <div>
+                <a href="{% url 'order:order_view' %}" class="neon-green">
+                    Pay
+                </a>
+            </div>
         </div>
 
-        <div><a id="neon-green" href="{% url 'order:order_view' %}" class="button">PAY</a></div>
     {% else %}
-        <h1 class="neon-green"> BASKET EMPTY</h1>
+        <h1 class="neon-green" style="text-align: center;">Basket is empty</h1>
     {% endif %}
-
-    </main>
+</main>
 {% endblock %}

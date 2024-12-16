@@ -30,14 +30,16 @@
     letter-spacing: 0.15em;
   }
 
-.neon-green-left {
+.neon-green-right {
     color: #00F6BB;
     font-family: "ashby" ;
     text-decoration: none;
     font-size: 175%;
-    margin-left: 10px;
+    margin: auto;
     letter-spacing: 0.15em;
-    text-align: right;
+    padding-right: 40px;
+    padding-top: 15px;
+    display: flex;
   }
 
 

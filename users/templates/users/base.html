@@ -32,23 +32,27 @@
                             <span class="neon-skip">|</span>
                         </li>
 
-                        <li>
-                            <a class="neon-green" href="{% url 'structure:basket_view' %}">BASCET</a>
-                            <span class="neon-skip">|</span>
-                        </li>
-
                         {% if user.is_authenticated %}
                         <li>
-                            <a class="neon-green" href="{% url 'users:profile' user.id %}">{{ user.username }}</a>
-                            <span class="neon-skip">|</span>
+                            <a class="neon-green" href="{% url 'structure:basket_view' %}">BASKET</a>
                         </li>
                         {% else %}
                         <li>
-                            <a class="neon-green" href="{% url 'users:login' %}">LOG_IN</a>
-                            <span class="neon-skip">|</span>
+                            <a class="neon-green" href="{% url 'users:login' %}">BASKET</a>
                         </li>
                         {% endif %}
                     </ul>
+
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="neon-green-right" href="{% url 'users:profile' user.id %}">{{ user.username }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="neon-green-right" href="{% url 'users:login' %}">LOG_IN</a>
+                </li>
+                {% endif %}
+
                 <a class = "switcher" href="{% url 'structure:bio' %}">
                     <img
                     src="{% static 'source/images/united-kingdom-uk-svgrepo-com.svg' %}"

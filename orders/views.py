@@ -80,6 +80,11 @@ class OrderView(CreateView):
         form.instance.user = self.request.user
         return super(OrderView, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['baskets'] = Basket.objects.filter(user=self.request.user)
+        return context
+
 
 @csrf_exempt
 def my_webhook_handler(request):
