@@ -1,13 +1,12 @@
 from django.core.mail import send_mail
 from django.db import models
-from yookassa import Receipt
 from Vishnya.settings import EMAIL_HOST_USER
 from structure.models import Basket
 from users.models import User
 
 
 class Order(models.Model):
-    STATUS_CHOICES = [(0, "Создаётся"), (1, "Оплачен"), (2, "Доставлен"), (3, "Подписка")]
+    STATUS_CHOICES = [(0, "Создаётся"), (1, "Оплачен"), (2, "Доставлен")]
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
     date = models.DateField().auto_now
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -30,13 +29,6 @@ class Order(models.Model):
         }
         self.payment_id = payment_id
         baskets.delete()
-        self.save()
-
-    def add_payment_id(self, payment_method_id, payment_id):
-        self.payment_method_id = payment_method_id
-        self.payment_id = payment_id
-        self.is_active = True
-        self.status = 3
         self.save()
 
     def send_mail(self, receipt):

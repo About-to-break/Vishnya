@@ -31,6 +31,21 @@ class Artwork(models.Model):
     def __str__(self):
         return f"Name:{self.name}; Collection:{self.collection}; Year:{self.year}"
 
+    def purchase_statistics(self):
+        from orders.models import Order  # Импортируем модель Order
+        orders = Order.objects.filter(status__in=[1, 2])  # Только оплаченные и доставленные заказы
+        total_purchased = 0
+
+        for order in orders:
+            for item in order.basket_history.get('purchased_items', []):
+                if item['product_name'] == self.name:
+                    total_purchased += item['quantity']
+
+        return {
+            "total_purchased": total_purchased,
+            "total_revenue": total_purchased * self.price
+        }
+
 
 class BasketQuerySet(models.QuerySet):
     def total_sum(self):
